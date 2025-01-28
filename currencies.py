@@ -1,49 +1,38 @@
 # pylint: disable=missing-docstring
-
-# TODO: add some currency rates
-
 """
-1.  Create a new constant dictionary called RATES at the top of currencies.py.
-    Keys will be 6-letter strings like "USDEUR", "GBPEUR", "CHFEUR"
-    The values will be their rate stored as a simple Python float number.
+1.  Create a new constant dictionary called RATES at the top of currencies.py.
+Keys will be 6-letter strings like "USDEUR", "GBPEUR", "CHFEUR"
+The values will be their rate stored as a simple Python float number.
 """
-
 RATES = {
-        "USDEUR": 0.85,
-        "GBPEUR": 1.13,
-        "CHFEUR": 0.86,
-        "EURGBP": 0.885
+    "USDEUR": 0.85,
+    "GBPEUR": 1.13,
+    "CHFEUR": 0.86,
+    "EURGBP": 0.885
 }
 
-"""
-2.  Implement the convert(amount, currency) function.
-    The first parameter is a tuple of two elements: a float and a currency (e.g. (100, "USD")).
-    The second parameter is a String, the currency you want to convert the amount into.
+def convert(amount, target_currency):
+    """Returns the converted amount in the given target_currency.
 
-3.  You should round the results to the nearest whole number.
-
-4.  When called with an unknown rate (e.g. "RMBEUR"), the convert function should return None.
-"""
-
-def convert(amount, currency):
-    """returns the converted amount in the given currency
-    amount is a tuple like (100, "EUR")
-    currency is a string
+    amount is a tuple like (100, "USD")
+    target_currency is a string
     """
-    if currency == 'USD':
-        fx_amount = amount * RATES.get("USDEUR", "Please enter a valid currency")
-        print(f"FX amount in EUR: €{fx_amount:.2f}")
+    # 2a. Unpack tuple
+    base_amount, base_currency = amount
 
-    elif currency == 'GBP'
-        fx_amount = amount * RATES.get("GBPEUR", "Please enter a valid currency")
-        print(f"FX amount in EUR: €{fx_amount:.2f}")
+    # 2b. Construct rate key
+    FX = base_currency + target_currency
 
-    elif currency == 'CHF'
-        fx_amount = amount * RATES.get("CHFEUR", "Please enter a valid currency")
-        print(f"FX amount in EUR: €{fx_amount:.2f}")
+    # 4. Get rate or None if doesnt exist
+    rate = RATES.get(FX)
 
-    else currency == 'EUR':
-        fx_amount = amount * RATES.get("EURGBP", "Please enter a valid currency")
-        print(f"FX amount in GBP: £{fx_amount:.2f}")
+    # 3. Return None if  rate unknown
+    if rate is None:
+        return None
 
- print(convert((100, "EUR"), "USD"))
+    # return rounded converted value
+    converted_value = round(base_amount * rate)
+    return converted_value
+
+
+print(convert((100, "USD"), "EUR"))  # Convert 100 USD to EUR
