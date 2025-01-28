@@ -9,10 +9,10 @@
 """
 
 RATES = {
-        USDEUR: 0.85,
-        GBPEUR: 1.13,
-        CHFEUR: 0.86,
-        EURGBP: 0.885
+        "USDEUR": 0.85,
+        "GBPEUR": 1.13,
+        "CHFEUR": 0.86,
+        "EURGBP": 0.885
 }
 
 """
@@ -30,7 +30,20 @@ def convert(amount, currency):
     amount is a tuple like (100, "EUR")
     currency is a string
     """
+    if currency == 'USD':
+        fx_amount = amount * RATES.get("USDEUR", "Please enter a valid currency")
+        print(f"FX amount in EUR: €{fx_amount:.2f}")
 
+    elif currency == 'GBP'
+        fx_amount = amount * RATES.get("GBPEUR", "Please enter a valid currency")
+        print(f"FX amount in EUR: €{fx_amount:.2f}")
 
+    elif currency == 'CHF'
+        fx_amount = amount * RATES.get("CHFEUR", "Please enter a valid currency")
+        print(f"FX amount in EUR: €{fx_amount:.2f}")
+
+    else currency == 'EUR':
+        fx_amount = amount * RATES.get("EURGBP", "Please enter a valid currency")
+        print(f"FX amount in GBP: £{fx_amount:.2f}")
 
  print(convert((100, "EUR"), "USD"))
