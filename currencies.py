@@ -21,10 +21,10 @@ def convert(amount, target_currency):
     base_amount, base_currency = amount
 
     # 2b. Construct rate key
-    FX = base_currency + target_currency
+    f_x = base_currency + target_currency
 
     # 4. Get rate or None if doesnt exist
-    rate = RATES.get(FX)
+    rate = RATES.get(f_x)
 
     # 3. Return None if  rate unknown
     if rate is None:
